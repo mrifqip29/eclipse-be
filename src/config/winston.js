@@ -1,11 +1,11 @@
-var appRoot = require("app-root-path");
-var winston = require("winston");
+import appRoot from 'app-root-path';
+import winston from 'winston';
 
 // Gunanya buat nyetting log yang akan dikeluarin, baik itu ke file berupa output maupun console terminal
-var options = {
+const options = {
   file: {
-    level: "info",
-    filename: `${appRoot}/logs/your-app.log`,
+    level: 'info',
+    filename: `${appRoot}/src/logs/eclipse-be.log`,
     handleExceptions: true,
     json: true,
     maxsize: 5242880, //ukuran file maksimal 5MB
@@ -13,7 +13,7 @@ var options = {
     colorize: false,
   },
   console: {
-    level: "debug",
+    level: 'debug',
     handleExceptions: true,
     json: false,
     colorize: true,
@@ -21,7 +21,7 @@ var options = {
 };
 
 // Panggil class si winston dengan setting yang udah kita buat
-var logger = winston.createLogger({
+const logger = winston.createLogger({
   transports: [
     new winston.transports.File(options.file),
     new winston.transports.Console(options.console),
@@ -37,4 +37,4 @@ logger.stream = {
   },
 };
 
-module.exports = logger;
+export default logger;
